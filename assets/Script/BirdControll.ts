@@ -25,6 +25,12 @@ export default class NewClass extends cc.Component {
     update (dt) {
         this.speed -= 0.05;
         this.node.y += this.speed;
+
+        var angle = -(this.speed/2) * 30;
+        if (angle >= 30) {
+            angle = 30;
+        }
+        this.node.rotation = angle;
     }
 
     onTouchStart (event: cc.Event.EventTouch) {
