@@ -30,10 +30,15 @@ export default class NewClass extends cc.Component {
         if (angle >= 30) {
             angle = 30;
         }
-        this.node.rotation = angle;
+        this.node.angle = angle;
+        // this.node.rotation = angle;
     }
 
     onTouchStart (event: cc.Event.EventTouch) {
         this.speed = 2;
+    }
+
+    onCollisionEnter (other: cc.Collider, self: cc.Collider) {
+        cc.log("game over");
     }
 }
