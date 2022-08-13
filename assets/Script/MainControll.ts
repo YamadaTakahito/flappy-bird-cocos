@@ -20,7 +20,11 @@ export default class NewClass extends cc.Component {
 
   // LIFE-CYCLE CALLBACKS:
 
-  // onLoad () {}
+  onLoad () {
+    var collisionManager = cc.director.getCollisionManager();
+    collisionManager.enabled = true;
+    collisionManager.enabledDebugDraw = true;
+  }
 
   start() {
     for (let i = 0; i < this.pipe.length; i++) {
