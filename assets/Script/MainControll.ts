@@ -5,6 +5,8 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
+import AudioSourceControl, {SoundType} from "./AudioSourceControl";
+
 const {ccclass, property} = cc._decorator;
 
 export enum GameStatus {
@@ -31,6 +33,9 @@ export default class MainControl extends cc.Component {
   @property(cc.Label)
   labelScore: cc.Label = null;
 
+  @property(AudioSourceControl)
+  audioSourceControl: AudioSourceControl = null;
+
   gameScore: number = 0;
 
   gameStatus: GameStatus = GameStatus.Game_Ready;
@@ -40,7 +45,7 @@ export default class MainControl extends cc.Component {
   onLoad () {
     var collisionManager = cc.director.getCollisionManager();
     collisionManager.enabled = true;
-    collisionManager.enabledDebugDraw = true;
+    collisionManager.enabledDebugDraw = false;
     this.spGameOver = this.node.getChildByName("GameOver").getComponent(cc.Sprite);
     this.spGameOver.node.active = false;
     this.btnStart = this.node.getChildByName("BtnStart").getComponent(cc.Button);
@@ -87,6 +92,7 @@ export default class MainControl extends cc.Component {
     this.spGameOver.node.active = true;
     this.btnStart.node.active = true;
     this.gameStatus = GameStatus.Game_Over;
+    this.audioSourceControl.playSound(SoundType.E_Sound_Die)
   }
 
   touchStartBtn () {

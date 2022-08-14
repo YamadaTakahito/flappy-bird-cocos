@@ -5,6 +5,7 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 import MainControl, {GameStatus} from "./MainControll";
+import {SoundType} from "./AudioSourceControl";
 
 const {ccclass, property} = cc._decorator;
 
@@ -43,6 +44,7 @@ export default class NewClass extends cc.Component {
 
     onTouchStart (event: cc.Event.EventTouch) {
         this.speed = 2;
+        this.mainControl.audioSourceControl.playSound(SoundType.E_Sound_Fly)
     }
 
     onCollisionEnter (other: cc.Collider, self: cc.Collider) {
@@ -53,6 +55,7 @@ export default class NewClass extends cc.Component {
         } else if (other.tag === 1) {
             this.mainControl.gameScore++;
             this.mainControl.labelScore.string = this.mainControl.gameScore.toString();
+            this.mainControl.audioSourceControl.playSound(SoundType.E_Sound_Score)
         }
     }
 }

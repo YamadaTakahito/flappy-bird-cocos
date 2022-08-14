@@ -1360,6 +1360,9 @@
     "labelScore": {
       "__id__": 25
     },
+    "audioSourceControl": {
+      "__id__": 27
+    },
     "_id": "1duYsEYRFMf6SUfFixp0tI"
   }
 ]
