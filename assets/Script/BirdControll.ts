@@ -4,7 +4,7 @@
 //  - https://docs.cocos.com/creator/manual/en/scripting/reference/attributes.html
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
-import MainControl from "./MainControll";
+import MainControl, {GameStatus} from "./MainControll";
 
 const {ccclass, property} = cc._decorator;
 
@@ -27,6 +27,9 @@ export default class NewClass extends cc.Component {
     }
 
     update (dt) {
+        if (this.mainControl.gameStatus != GameStatus.Game_Playing) {
+            return;
+        }
         this.speed -= 0.05;
         this.node.y += this.speed;
 
