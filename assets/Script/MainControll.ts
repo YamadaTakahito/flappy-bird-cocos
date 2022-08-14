@@ -8,7 +8,7 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class MainControl extends cc.Component {
 
   @property(cc.Sprite)
   spBg: cc.Sprite [] = [null, null];
@@ -24,12 +24,14 @@ export default class NewClass extends cc.Component {
     var collisionManager = cc.director.getCollisionManager();
     collisionManager.enabled = true;
     collisionManager.enabledDebugDraw = true;
+    this.spGameOver = this.node.getChildByName("GameOver").getComponent(cc.Sprite);
+    this.spGameOver.node.active = false;
   }
 
   start() {
     for (let i = 0; i < this.pipe.length; i++) {
       this.pipe[i] = cc.instantiate(this.pipePrefab);
-      this.node.addChild(this.pipe[i]);
+      this.node.getChildByName("Pipe").addChild(this.pipe[i]);
 
       this.pipe[i].x = 170 + 200 * i;
       var minY = -120;
@@ -56,5 +58,9 @@ export default class NewClass extends cc.Component {
         this.pipe[i].y = minY + Math.random() * (maxY - minY);
       }
     }
+  }
+
+  gameOver () {
+    this.spGameOver.node.active = true;
   }
 }

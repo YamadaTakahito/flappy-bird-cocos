@@ -4,6 +4,7 @@
 //  - https://docs.cocos.com/creator/manual/en/scripting/reference/attributes.html
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
+import MainControl from "./MainControll";
 
 const {ccclass, property} = cc._decorator;
 
@@ -12,10 +13,13 @@ export default class NewClass extends cc.Component {
 
     speed: number = 0;
 
+    mainControl: MainControl = null;
+
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
         cc.Canvas.instance.node.on(cc.Node.EventType.TOUCH_START, this.onTouchStart, this)
+        this.mainControl = cc.Canvas.instance.node.getComponent("MainControll");
     }
 
     start () {
@@ -40,5 +44,6 @@ export default class NewClass extends cc.Component {
 
     onCollisionEnter (other: cc.Collider, self: cc.Collider) {
         cc.log("game over");
+        this.mainControl.gameOver();
     }
 }
