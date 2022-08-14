@@ -28,6 +28,10 @@ export default class MainControl extends cc.Component {
 
   btnStart: cc.Button = null;
 
+  @property(cc.Label)
+  labelScore: cc.Label = null;
+
+  gameScore: number = 0;
 
   gameStatus: GameStatus = GameStatus.Game_Ready;
 
@@ -88,7 +92,6 @@ export default class MainControl extends cc.Component {
   touchStartBtn () {
     this.btnStart.node.active = false;
     this.gameStatus = GameStatus.Game_Playing;
-
     this.spGameOver.node.active = false;
 
     for (let i = 0; i < this.pipe.length; i++) {
@@ -101,5 +104,8 @@ export default class MainControl extends cc.Component {
     var bird = this.node.getChildByName("Bird");
     bird.y = 0;
     bird.rotation = 0;
+
+    this.gameScore = 0;
+    this.labelScore.string = this.gameScore.toString();
   }
 }

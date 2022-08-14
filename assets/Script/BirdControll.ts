@@ -46,7 +46,13 @@ export default class NewClass extends cc.Component {
     }
 
     onCollisionEnter (other: cc.Collider, self: cc.Collider) {
-        cc.log("game over");
-        this.mainControl.gameOver();
+        if (other.tag === 0) {
+            cc.log("game over");
+            this.mainControl.gameOver();
+            this.speed = 0;
+        } else if (other.tag === 1) {
+            this.mainControl.gameScore++;
+            this.mainControl.labelScore.string = this.mainControl.gameScore.toString();
+        }
     }
 }
