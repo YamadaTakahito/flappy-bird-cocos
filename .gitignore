@@ -58,7 +58,6 @@ temp/
 local/
 jsb-binary/
 web-desktop/
-web-mobile/
 runtime/
 jsb/
 export/
